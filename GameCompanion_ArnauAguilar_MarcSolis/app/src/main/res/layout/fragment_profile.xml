@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragment.ProfileFragment"
+             android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+
+<!--                //Register-->
+                <Button
+                        android:id="@+id/registerButton"
+                        android:layout_width="300dp"
+                        android:layout_height="@dimen/item_medium_height"
+                        android:text="@string/register"
+                        android:layout_centerInParent="true"
+
+                        />
+
+<!--                //Login-->
+                <Button
+                        android:id="@+id/loginButton"
+                        android:layout_width="300dp"
+                        android:layout_height="@dimen/item_medium_height"
+                        android:text="@string/login"
+                        android:layout_below="@id/registerButton"
+                        android:layout_centerInParent="true"
+
+                        />
+
+
+
+                <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:id="@+id/userInfo"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/userName"
+                            android:layout_height="50dp"
+                            android:text="rocsolis45"
+                            android:fontFamily="@font/blops"
+                            android:textColor="@color/colorIcons"
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:autoSizeTextType="uniform"
+                            android:autoSizeMinTextSize="12dp"
+                            android:autoSizeMaxTextSize="35dp"
+                            android:autoSizeStepGranularity="1dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="70dp"
+                            />
+
+                    //user Info
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:background="@color/ColorLight"
+                            android:layout_marginHorizontal="20dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="50dp"
+                            >
+
+                        <ImageView
+                                android:background="@color/colorPrimaryDark"
+                                android:layout_height="100dp"
+                                android:layout_width="100dp"
+                                android:id="@+id/prestigeIcon"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                />
+                        <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+
+                                >
+                            <ImageView
+                                    android:background="@color/colorPrimaryDark"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="match_parent"
+                                    android:layout_margin="5dp"
+                                    />
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="15dp">
+
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:id="@+id/prestigeName"
+                                        android:layout_height="50dp"
+                                        android:text="Maestro de prestigio"
+                                        android:fontFamily="@font/agencyr"
+                                        android:textColor="@color/colorIcons"
+                                        android:autoSizeTextType="uniform"
+                                        android:autoSizeMinTextSize="12dp"
+                                        android:autoSizeMaxTextSize="35dp"
+                                        android:autoSizeStepGranularity="1dp"
+                                        />
+                                <TextView
+                                        android:layout_width="match_parent"
+                                        android:id="@+id/prestigeLevel"
+                                        android:layout_height="wrap_content"
+                                        android:text="Nivel Maximo"
+                                        android:fontFamily="@font/agencyr"
+                                        android:textColor="@color/colorIcons"
+                                        android:layout_marginBottom="10dp"
+                                        android:textSize="25dp"
+                                        />
+                            </LinearLayout>
+                        </FrameLayout>
+
+
+                    </LinearLayout>
+
+                    //stats
+                    <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="65dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
+                            >
+                        <ImageView
+                                android:background="@color/ColorLight"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"
+                                />
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                >
+
+                            //first block of statistics
+                            <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginVertical="5dp"
+                                    android:layout_marginLeft="5dp"
+                                    >
+
+                                <ImageView
+                                        android:background="@color/colorPrimaryDark"
+                                        android:layout_height="match_parent"
+                                        android:layout_width="match_parent"
+                                        />
+                                <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:orientation="vertical">
+
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/kills"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="25dp"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:id="@+id/kills"
+                                            android:layout_height="wrap_content"
+                                            android:text="58922"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="30dp"
+
+                                            android:textStyle="bold"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:layout_marginTop="20dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/KD_ratio"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="25dp"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/KDRatio"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="30dp"
+                                            android:text="0.50"
+                                            android:textColor="@color/colorIcons"/>
+
+                                </LinearLayout>
+                            </FrameLayout>
+                            //second block of statistics
+                            <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginVertical="5dp"
+                                    android:layout_marginLeft="5dp">
+                                <ImageView
+                                        android:background="@color/colorPrimaryDark"
+                                        android:layout_height="match_parent"
+                                        android:layout_width="match_parent"
+                                        />
+                                <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:gravity="center"
+                                        android:layout_gravity="center"
+
+                                        android:layout_marginHorizontal="10dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:orientation="vertical">
+
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/wins"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="25dp"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:id="@+id/wins"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="1752"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="30dp"
+
+                                            android:textStyle="bold"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:layout_marginTop="20dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/WL_ratio"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="25dp"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:id="@+id/WLRatio"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="30dp"
+                                            android:text="0.80"
+                                            android:textColor="@color/colorIcons"/>
+
+                                </LinearLayout>
+                            </FrameLayout>
+                            //third block of statistics
+                            <FrameLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginVertical="5dp"
+                                    android:layout_margin="5dp">
+                                <ImageView
+                                        android:background="@color/colorPrimaryDark"
+                                        android:layout_height="match_parent"
+                                        android:layout_width="match_parent"
+                                        />
+                                <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:gravity="center"
+                                        android:layout_marginHorizontal="10dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:orientation="vertical">
+
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/score"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="25dp"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:id="@+id/score"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="58922"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="30dp"
+
+                                            android:textStyle="bold"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:layout_marginTop="20dp"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/score_per_minute"
+                                            android:fontFamily="@font/agencyr"
+                                            android:textSize="25dp"
+                                            android:textColor="@color/colorIcons"/>
+                                    <TextView
+                                            android:id="@+id/scorePerMin"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="30dp"
+                                            android:fontFamily="@font/agencyr"
+                                            android:text="0.50"
+                                            android:textColor="@color/colorIcons"/>
+
+                                </LinearLayout>
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+
+                    </FrameLayout>
+
+                    //play time
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginTop="60dp"
+                            >
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/play_time"
+                                android:fontFamily="@font/agencyr"
+                                android:textColor="@color/colorIcons"
+                                android:textSize="35dp"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:id="@+id/playTime"
+                                android:layout_height="wrap_content"
+                                android:text="20d 15h 34m 23s"
+                                android:fontFamily="@font/agencyr"
+                                android:textSize="35dp"
+                                android:textColor="@color/colorIcons"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                </ScrollView>
+
+                //logout
+                <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:padding="10dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/logoutButton"
+                        android:text="LogOut"
+                        android:textSize="10dp"
+                        android:drawableEnd="@drawable/log_out"
+                        android:layout_alignParentRight="true"
+                        android:background="@android:color/transparent"
+                        />
+
+
+            </RelativeLayout>
+
+
+
+
+</FrameLayout>

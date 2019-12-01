@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.RegisterActivity"
+        android:gravity="center_horizontal|bottom"
+
+        android:orientation="vertical"
+        >
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="match_parent">
+        <ImageView
+                android:layout_width="50dp"
+                android:tint="@color/colorAccent"
+                android:tintMode="add"
+                android:id="@+id/loadingGif"
+                android:layout_height="50dp"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="100dp"
+
+                android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_medium_height"
+                    android:layout_marginBottom="10dp"
+                    android:textColorHint="@color/colorIcons"
+                    android:textColor="@color/colorIcons"
+                    android:hint="@string/user_name"
+
+                    />
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emalEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_medium_height"
+                    android:layout_marginBottom="10dp"
+                    android:textColorHint="@color/colorIcons"
+                    android:textColor="@color/colorIcons"
+                    android:hint="@string/email"
+                    />
+
+            <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/paswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/item_medium_height"
+                    android:layout_marginBottom="10dp"
+                    android:textColorHint="@color/colorIcons"
+                    android:textColor="@color/colorIcons"
+                    android:inputType="textPassword"
+                    android:hint="@string/password"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:id="@+id/InvalidCredentials"
+                    android:textSize="17dp"
+                    android:textColor="@color/colorAccent"
+                    android:text="Invalid Credentials!"/>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                <Button
+                        android:id="@+id/RegisterActivityButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_medium_height"
+                        android:text="@string/register"
+                        />
+
+                <Button
+                        android:id="@+id/LoginButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/item_medium_height"
+                        android:text="@string/login"
+                        />
+            </FrameLayout>
+
+        </LinearLayout>
+        <com.google.android.gms.ads.AdView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bannerAdView"
+                app:adSize="BANNER"
+                android:layout_gravity="bottom"
+                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+                />
+    </FrameLayout>
+
+
+
+
+</LinearLayout>

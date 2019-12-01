@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "105118132179",
+    "firebase_url": "https://mentiras-f2250.firebaseio.com",
+    "project_id": "mentiras-f2250",
+    "storage_bucket": "mentiras-f2250.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105118132179:android:7ee002b27dc60b26f9f126",
+        "android_client_info": {
+          "package_name": "com.marcsolis.gamecompanion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105118132179-a5v9lb8hqj54542k49qrr66l5pmn2o21.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPOiES2f6ex9rB3oelF7i06AIafX0bEQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105118132179-a5v9lb8hqj54542k49qrr66l5pmn2o21.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

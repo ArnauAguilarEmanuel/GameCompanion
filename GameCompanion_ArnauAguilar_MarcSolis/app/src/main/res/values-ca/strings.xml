@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Game Companion</string>
+    <string name="tab_resume">Resumen</string>
+    <string name="tab_home">Usuari</string>
+    <string name="tab_classes">Clases</string>
+    <string name="registerButton">Register Here</string>
+    <string name="error_register_invalid_username">Usuari requerit</string>
+    <string name="error_register_invalid_email">email incorrecte</string>
+    <string name="error_register_invalid_password">La contrasenya requereix lletres, nombres i almenys 4 caracters</string>
+    <string name="succes_user_register">Useari created correctament</string>
+
+    //Main menu
+    <string name="kills">baixes</string>
+    <string name="KD_ratio">taxa K/D</string>
+    <string name="wins">victories</string>
+    <string name="WL_ratio">taxa W/L</string>
+    <string name="score">puntuacio</string>
+    <string name="score_per_minute">punts/min</string>
+
+    <string name="play_time">Jugat</string>
+
+    //Register
+    <string name="user_name">Usuari</string>
+    <string name="email">Correu</string>
+    <string name="password">Contrasenya</string>
+    <string name="login">Entrar</string>
+    <string name="register">Resgistra-se</string>
+
+    //class Weapon
+    <string name="main">Principal</string>
+    <string name="secondary">Secundària</string>
+</resources>

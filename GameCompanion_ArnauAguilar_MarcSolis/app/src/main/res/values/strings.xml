@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Game Companion</string>
+    <string name="tab_resume">Resume</string>
+    <string name="tab_home">User</string>
+    <string name="tab_classes">Classes</string>
+    <string name="registerButton">Register Here</string>
+    <string name="error_register_invalid_username">Username required</string>
+    <string name="error_register_invalid_email">invalid email</string>
+    <string name="error_register_invalid_password">Password requires letters and numbers and at least 4 characters</string>
+    <string name="succes_user_register">User created successfully</string>
+
+    //Main menu
+    <string name="kills">kills</string>
+    <string name="KD_ratio">K/D ratio</string>
+    <string name="wins">wins</string>
+    <string name="WL_ratio">W/L ratio</string>
+    <string name="score">score</string>
+    <string name="score_per_minute">score/min</string>
+
+    <string name="play_time">Played</string>
+
+    //Register
+    <string name="user_name">User name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    //item
+    <string name="main">Main</string>
+    <string name="secondary">Secondary</string>
+
+</resources>
