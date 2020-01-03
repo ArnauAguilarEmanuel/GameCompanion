@@ -12,6 +12,7 @@ import com.marcsolis.gamecompanion.ListAdapters.streamsListAdapter
 import com.marcsolis.gamecompanion.R
 import com.marcsolis.gamecompanion.model.TWGameResponse
 import com.marcsolis.gamecompanion.model.TWStreamsResponse
+import com.marcsolis.gamecompanion.model.TWUserResponse
 import com.marcsolis.gamecompanion.network.apiService
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_list.*
@@ -50,12 +51,37 @@ class StreamsFragment: Fragment() {
                         Picasso.get().load(game.imageUrl).into(gameImage)
 
 
+
                         apiService.service.getStreams(game.id.toString()).enqueue(object : Callback<TWStreamsResponse> {
                             override fun onResponse(call: Call<TWStreamsResponse>, response: Response<TWStreamsResponse>) {
                                 response.body()?.data?.let { streams ->
                                     if(streams != null)recivedStreams.data = streams;
+                                    var userNames :ArrayList<String> = ArrayList<String>();
+                                    for(stream in streams){
+                                        userNames.add(stream.user_id.toString());
+                                    }
 
-                                    initUI()
+                                    apiService.service.getUsers(userNames).enqueue(object : Callback<TWUserResponse> {
+                                        override fun onResponse(call: Call<TWUserResponse>, response: Response<TWUserResponse>) {
+                                            response.body()?.data?.let { users ->
+                                                var i =0
+                                                for(user in users){
+                                                    Log.i("streamsF", "user image: ${user.imageUrl}")
+                                                    recivedStreams.data[i].userImageURL = user.imageUrl
+                                                    i++
+                                                }
+
+
+                                                initUI()
+                                            }
+                                        }
+
+                                        override fun onFailure(call: Call<TWUserResponse>, t: Throwable) {
+                                            t.printStackTrace()
+                                        }
+
+                                    })
+
                                 }
                             }
 

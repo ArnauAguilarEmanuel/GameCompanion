@@ -2,6 +2,7 @@ package com.marcsolis.gamecompanion.network
 
 import com.marcsolis.gamecompanion.model.TWGameResponse
 import com.marcsolis.gamecompanion.model.TWStreamsResponse
+import com.marcsolis.gamecompanion.model.TWUserResponse
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,7 +31,9 @@ interface apiService {
     @GET("games")
     fun getGames(@Query("name") gameId: String): Call<TWGameResponse>
 
-
+    @Headers("Client-ID: ywvglt0gib8rqdly0ejobehqfi071m")
+    @GET("users")
+    fun getUsers(@Query("id") gameId: ArrayList<String>): Call<TWUserResponse>
 
 
 }

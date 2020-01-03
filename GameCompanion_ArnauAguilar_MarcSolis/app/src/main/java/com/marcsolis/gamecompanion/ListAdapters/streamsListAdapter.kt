@@ -9,6 +9,9 @@ import com.marcsolis.gamecompanion.model.TWStream
 import com.marcsolis.gamecompanion.model.item
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.stream_layout.view.*
+import com.marcsolis.gamecompanion.model.CircleTransform
+
+
 
 
 
@@ -19,7 +22,7 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
     // Create View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.stream_layout, parent, false)
+            LayoutInflater.from(parent.context).inflate(com.marcsolis.gamecompanion.R.layout.stream_layout, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -39,6 +42,8 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
         holder.title.text = element.title
 
         Picasso.get().load(element.imageUrl).into(holder.thumbnail)
+        //Picasso.get().load(element.userImageURL).into(holder.userImage)
+        Picasso.get().load(element.userImageURL).transform(CircleTransform()).into(holder.userImage)
 
     }
 
@@ -48,6 +53,7 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
         val username = itemView.username
         val title= itemView.title
         val thumbnail = itemView.thumbnail
+        val userImage = itemView.userImage
     }
 
 }

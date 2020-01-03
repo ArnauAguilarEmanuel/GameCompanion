@@ -16,6 +16,8 @@ data class TWStream(
     var title: String?=null,
     @SerializedName("user_name")
     var username:String? = null,
+    var user_id:String? = null,
+    var userImageURL:String? = null,
     private var thumbnail_url: String? = null
 ){
     val imageUrl:String?
@@ -43,4 +45,20 @@ data class TWGame(
 
 data class TWGameResponse(
     var data: ArrayList<TWGame> = ArrayList<TWGame>()
+)
+
+
+data class TWUser(
+    var view_count: Integer? = null,
+    private var profile_image_url: String? = null
+){
+    val imageUrl:String?
+        get(){
+
+            return profile_image_url?.replace(oldValue = "{width}x{height}", newValue = "300x300");
+        }
+}
+
+data class TWUserResponse(
+    var data: ArrayList<TWUser> = ArrayList<TWUser>()
 )
