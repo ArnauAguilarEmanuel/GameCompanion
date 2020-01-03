@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.marcsolis.gamecompanion.fragment.ProfileFragment
 import com.marcsolis.gamecompanion.R
 import com.marcsolis.gamecompanion.fragment.ClassFragment
+import com.marcsolis.gamecompanion.fragment.StreamsFragment
 import com.marcsolis.gamecompanion.model.UserModel
 import com.marcsolis.gamecompanion.util.COLLECTION_USERS
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,10 +63,18 @@ class MainActivity : AppCompatActivity() {
                     FirebaseAnalytics.getInstance(this).logEvent("User_Tab_Click", null)
 
                 }
-                R.id.info ->{
+                R.id.streams ->{
+
+                    //Create fragment
+                    val streamsFragment = StreamsFragment()
+                    //Add fragment to Fragment Container
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.replace(fragmentContainer.id, streamsFragment)
+                    fragmentTransaction.commit()
+
                     FirebaseAnalytics.getInstance(this).logEvent("Info_Tab_Click", null)
                 }
-
             }
             true
         }

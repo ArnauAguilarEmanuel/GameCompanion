@@ -1,0 +1,30 @@
+package com.marcsolis.gamecompanion.model
+
+import android.content.Context
+import android.util.DisplayMetrics
+import android.view.Window
+import android.view.WindowManager
+import com.google.gson.annotations.SerializedName
+import android.view.Display
+import android.content.Context.WINDOW_SERVICE
+import androidx.core.content.ContextCompat.getSystemService
+
+
+
+
+data class TWStream(
+    var title: String?=null,
+    @SerializedName("user_name")
+    var username:String? = null,
+    private var thumbnail_url: String? = null
+){
+    val imageUrl:String?
+    get(){
+
+        return thumbnail_url?.replace(oldValue = "{width}x{height}", newValue = "889x500");
+    }
+}
+
+data class TWStreamsResponse (
+    var data: ArrayList<TWStream> = ArrayList<TWStream>()
+)

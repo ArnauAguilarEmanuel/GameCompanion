@@ -1,26 +1,14 @@
 package com.marcsolis.gamecompanion.fragment
 
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
-import com.google.gson.Gson
-import com.marcsolis.gamecompanion.ItemListAdapter
+import com.marcsolis.gamecompanion.ListAdapters.ItemListAdapter
 import com.marcsolis.gamecompanion.R
-import com.marcsolis.gamecompanion.activity.MainActivity
-import com.marcsolis.gamecompanion.model.ItemModel
 import com.marcsolis.gamecompanion.model.UserModel
-import com.marcsolis.gamecompanion.model.item
-import com.marcsolis.gamecompanion.util.COLLECTION_USERS
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_list.*
 
 
