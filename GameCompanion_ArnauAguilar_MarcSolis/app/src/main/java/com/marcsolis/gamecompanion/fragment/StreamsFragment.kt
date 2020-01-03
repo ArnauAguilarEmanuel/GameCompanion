@@ -10,9 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.marcsolis.gamecompanion.ListAdapters.ItemListAdapter
 import com.marcsolis.gamecompanion.ListAdapters.streamsListAdapter
 import com.marcsolis.gamecompanion.R
+import com.marcsolis.gamecompanion.model.TWGameResponse
 import com.marcsolis.gamecompanion.model.TWStreamsResponse
 import com.marcsolis.gamecompanion.network.apiService
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_list.*
+import kotlinx.android.synthetic.main.activity_list.recyclerview
+import kotlinx.android.synthetic.main.streams_layout.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,20 +39,36 @@ class StreamsFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        apiService.service.getStreams().enqueue(object : Callback<TWStreamsResponse> {
-            override fun onResponse(call: Call<TWStreamsResponse>, response: Response<TWStreamsResponse>) {
-                response.body()?.data?.let { streams ->
-                    if(streams != null)recivedStreams.data = streams;
-                    for (stream in streams) {
+
+        apiService.service.getGames("Call of Duty: Black Ops II").enqueue(object : Callback<TWGameResponse> {
+            override fun onResponse(call: Call<TWGameResponse>, response: Response<TWGameResponse>) {
+                response.body()?.data?.let { games ->
+                    for (game in games) {
                         Log.i("streamsF","--------------------------------------------------------------------------------------------------------")
-                        Log.i("streamsF", "Title: ${stream.title} and image: ${stream.imageUrl} and username: ${stream.username}")
-                        Log.i("streamsF", "Stream Url: https://www.twitch.tv/${stream.username}")
+                        Log.i("streamsF", "Title: ${game.name} and id: ${game.id} and image: ${game.imageUrl}")
+
+                        Picasso.get().load(game.imageUrl).into(gameImage)
+
+
+                        apiService.service.getStreams(game.id.toString()).enqueue(object : Callback<TWStreamsResponse> {
+                            override fun onResponse(call: Call<TWStreamsResponse>, response: Response<TWStreamsResponse>) {
+                                response.body()?.data?.let { streams ->
+                                    if(streams != null)recivedStreams.data = streams;
+
+                                    initUI()
+                                }
+                            }
+
+                            override fun onFailure(call: Call<TWStreamsResponse>, t: Throwable) {
+                                t.printStackTrace()
+                            }
+
+                        })
                     }
-                    initUI()
                 }
             }
 
-            override fun onFailure(call: Call<TWStreamsResponse>, t: Throwable) {
+            override fun onFailure(call: Call<TWGameResponse>, t: Throwable) {
                 t.printStackTrace()
             }
 

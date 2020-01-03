@@ -28,3 +28,19 @@ data class TWStream(
 data class TWStreamsResponse (
     var data: ArrayList<TWStream> = ArrayList<TWStream>()
 )
+
+data class TWGame(
+    var id: String?=null,
+    var name:String? = null,
+    private var box_art_url: String? = null
+){
+    val imageUrl:String?
+        get(){
+
+            return box_art_url?.replace(oldValue = "{width}x{height}", newValue = "165x213");
+        }
+}
+
+data class TWGameResponse(
+    var data: ArrayList<TWGame> = ArrayList<TWGame>()
+)

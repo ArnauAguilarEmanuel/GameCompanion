@@ -1,5 +1,6 @@
 package com.marcsolis.gamecompanion.network
 
+import com.marcsolis.gamecompanion.model.TWGameResponse
 import com.marcsolis.gamecompanion.model.TWStreamsResponse
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -22,12 +23,12 @@ interface apiService {
 
     @Headers("Client-ID: ywvglt0gib8rqdly0ejobehqfi071m")
     @GET("streams")
-    fun getStreams(): Call<TWStreamsResponse>
+    fun getStreams(@Query("game_id")gameId:String): Call<TWStreamsResponse>
 
 
     @Headers("Client-ID: ywvglt0gib8rqdly0ejobehqfi071m")
     @GET("games")
-    fun getGames(@Query("id") gameId: String): Call<Any>
+    fun getGames(@Query("name") gameId: String): Call<TWGameResponse>
 
 
 

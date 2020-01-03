@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF5722</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="ColorLight">#919191</color>
+    <color name="ColorDarkLight">#252525</color>
     <color name="ColorSelected">#FF5722</color>
 
 </resources>
