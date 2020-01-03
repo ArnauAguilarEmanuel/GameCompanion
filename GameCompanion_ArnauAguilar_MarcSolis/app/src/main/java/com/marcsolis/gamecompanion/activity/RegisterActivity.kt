@@ -1,5 +1,6 @@
 package com.marcsolis.gamecompanion.activity
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -19,6 +20,7 @@ import kotlin.collections.ArrayList
 import com.bumptech.glide.Glide
 
 import android.widget.ImageView
+import android.app.AlertDialog
 import com.google.firebase.analytics.FirebaseAnalytics
 
 
@@ -127,52 +129,95 @@ class RegisterActivity : AppCompatActivity() {
                                         var newPrestige : Pair<String, String>
                                         newPrestige = prestiges.shuffled()[0]
 
-                                        for(i in 0..9){
-                                            var weapon = weapons.shuffled()[0]
-                                            var weapon2 = weapons.shuffled()[0]
-                                            items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
-                                        }
-
-                                        classes.class1 = items[0]
-                                        classes.class2 = items[1]
-                                        classes.class3 = items[2]
-                                        classes.class4 = items[3]
-                                        classes.class5 = items[4]
-                                        classes.class6 = items[5]
-                                        classes.class7 = items[6]
-                                        classes.class8 = items[7]
-                                        classes.class9 = items[8]
-                                        classes.class10 = items[9]
-
-                                        //Create user profile
-                                        val userModel = UserModel(
-                                            userId = authResult.user?.uid ?: "",
-                                            userName = username,
-                                            userEmail = email,
-
-                                            iconURL = newPrestige.second,
-                                            prestigeName = newPrestige.first,
-                                            prestigeLevel = (1 + Random().nextInt(54)).toString(),
-                                            kills = Random().nextInt(10000),
-                                            deaths = Random().nextInt(10000),
-                                            losses = Random().nextInt(10000),
-                                            wins = Random().nextInt(10000),
-                                            playTime = Random().nextInt(10).toString()+"d, "+Random().nextInt(23).toString()+"h, "+Random().nextInt(60).toString()+"m, "+Random().nextInt(60).toString()+"s",
-                                            score= Random().nextInt(100000),
-                                            classes = classes
-                                        )
-
-                                        FirebaseAnalytics.getInstance(this).logEvent("User_Register", null)
+                                        //Create popup
+                                        val selectedItems = ArrayList<Int>() // Where we track the selected items
+                                        val builder = AlertDialog.Builder(this)
+                                        var soldierClass = arrayOf("Assault", "Snipper", "Recon", "Medic", "Engineer", "Support", "Bomber","Juggernout",
+                                            "Riot gear", "Marine", "Ranger", "Spetsnaz", "SAS");
 
 
+                                        // Set the dialog title
+                                        builder.setTitle("Select Classes (10)")
+                                            // Specify the list array, the items to be selected by default (null for none),
+                                            // and the listener through which to receive callbacks when items are selected
+                                            .setMultiChoiceItems(soldierClass, null,
+                                                DialogInterface.OnMultiChoiceClickListener { dialog, which, isChecked ->
 
-                                        FirebaseFirestore.getInstance().collection(COLLECTION_USERS).document(authResult.user?.uid ?:"").set(userModel).addOnSuccessListener {
-                                            finish()
-                                        }
-                                            .addOnFailureListener {
-                                                FirebaseAnalytics.getInstance(this).logEvent("Error_UpdateUserToFirestore", null)
-                                                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
-                                            }
+                                                    if (isChecked) {
+                                                        selectedItems.add(which)
+                                                        // If the user checked the item, add it to the selected items
+
+                                                    } else if (selectedItems.contains(which)) {
+                                                        // Else, if the item is already in the array, remove it
+                                                        selectedItems.remove(Integer.valueOf(which))
+                                                    }
+                                                })
+                                            // Set the action buttons
+                                            .setPositiveButton("Ok",
+                                                DialogInterface.OnClickListener { dialog, id ->
+                                                    // User clicked OK, so save the selectedItems results somewhere
+                                                    // or return them to the component that opened the dialog
+                                                    if(selectedItems.count() > 10) Toast.makeText(this, "Too many classes selected", Toast.LENGTH_LONG).show()
+                                                    else {
+                                                        //Generate class
+                                                        for(i in 0..9){
+                                                            var weapon = weapons.shuffled()[0]
+                                                            var weapon2 = weapons.shuffled()[0]
+                                                            items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                        }
+
+                                                        classes.class1 = items[0]
+                                                        classes.class2 = items[1]
+                                                        classes.class3 = items[2]
+                                                        classes.class4 = items[3]
+                                                        classes.class5 = items[4]
+                                                        classes.class6 = items[5]
+                                                        classes.class7 = items[6]
+                                                        classes.class8 = items[7]
+                                                        classes.class9 = items[8]
+                                                        classes.class10 = items[9]
+
+                                                        //Create user profile
+                                                        val userModel = UserModel(
+                                                            userId = authResult.user?.uid ?: "",
+                                                            userName = username,
+                                                            userEmail = email,
+
+                                                            iconURL = newPrestige.second,
+                                                            prestigeName = newPrestige.first,
+                                                            prestigeLevel = (1 + Random().nextInt(54)).toString(),
+                                                            kills = Random().nextInt(10000),
+                                                            deaths = Random().nextInt(10000),
+                                                            losses = Random().nextInt(10000),
+                                                            wins = Random().nextInt(10000),
+                                                            playTime = Random().nextInt(10).toString()+"d, "+Random().nextInt(23).toString()+"h, "+Random().nextInt(60).toString()+"m, "+Random().nextInt(60).toString()+"s",
+                                                            score= Random().nextInt(100000),
+                                                            classes = classes
+                                                        )
+
+                                                        FirebaseAnalytics.getInstance(this).logEvent("User_Register", null)
+
+
+
+                                                        FirebaseFirestore.getInstance().collection(COLLECTION_USERS).document(authResult.user?.uid ?:"").set(userModel).addOnSuccessListener {
+                                                            finish()
+                                                        }
+                                                            .addOnFailureListener {
+                                                                FirebaseAnalytics.getInstance(this).logEvent("Error_UpdateUserToFirestore", null)
+                                                                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+                                                            }
+
+
+
+                                                        dialog.dismiss()
+                                                    }
+
+                                                })
+
+                                        val dialog = builder.create()
+                                        dialog.show();
+
+
 
 
                                     }.addOnFailureListener {
