@@ -104,100 +104,98 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnSuccessListener { result ->
                         for(doc in result.documents)
                             accesories.add(doc["imageUrl"].toString())
+
+                    FirebaseFirestore.getInstance().collection("weapons")
+                        .get()
+                        .addOnSuccessListener { result ->
+                            for(doc in result.documents)
+                                weapons.add(Pair(doc["weaponName"].toString(),doc["imageUrl"].toString()))
+
+                            FirebaseFirestore.getInstance().collection("prestiges")
+                                .get()
+                                .addOnSuccessListener { result ->
+                                    for(doc in result.documents)
+                                        prestiges.add(Pair(doc.id,doc["imageUrl"].toString()))
+
+                                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
+
+                                        var classes : itemsClass
+                                        classes = itemsClass()
+                                        var items : ArrayList<item>
+                                        items = ArrayList<item>()
+
+                                        var newPrestige : Pair<String, String>
+                                        newPrestige = prestiges.shuffled()[0]
+
+                                        for(i in 0..9){
+                                            var weapon = weapons.shuffled()[0]
+                                            var weapon2 = weapons.shuffled()[0]
+                                            items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                        }
+
+                                        classes.class1 = items[0]
+                                        classes.class2 = items[1]
+                                        classes.class3 = items[2]
+                                        classes.class4 = items[3]
+                                        classes.class5 = items[4]
+                                        classes.class6 = items[5]
+                                        classes.class7 = items[6]
+                                        classes.class8 = items[7]
+                                        classes.class9 = items[8]
+                                        classes.class10 = items[9]
+
+                                        //Create user profile
+                                        val userModel = UserModel(
+                                            userId = authResult.user?.uid ?: "",
+                                            userName = username,
+                                            userEmail = email,
+
+                                            iconURL = newPrestige.second,
+                                            prestigeName = newPrestige.first,
+                                            prestigeLevel = (1 + Random().nextInt(54)).toString(),
+                                            kills = Random().nextInt(10000),
+                                            deaths = Random().nextInt(10000),
+                                            losses = Random().nextInt(10000),
+                                            wins = Random().nextInt(10000),
+                                            playTime = Random().nextInt(10).toString()+"d, "+Random().nextInt(23).toString()+"h, "+Random().nextInt(60).toString()+"m, "+Random().nextInt(60).toString()+"s",
+                                            score= Random().nextInt(100000),
+                                            classes = classes
+                                        )
+
+                                        FirebaseAnalytics.getInstance(this).logEvent("User_Register", null)
+
+
+
+                                        FirebaseFirestore.getInstance().collection(COLLECTION_USERS).document(authResult.user?.uid ?:"").set(userModel).addOnSuccessListener {
+                                            finish()
+                                        }
+                                            .addOnFailureListener {
+                                                FirebaseAnalytics.getInstance(this).logEvent("Error_UpdateUserToFirestore", null)
+                                                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+                                            }
+
+
+                                    }.addOnFailureListener {
+                                        Toast.makeText(this, "Error while register: " + it.localizedMessage, Toast.LENGTH_LONG).show()
+                                        loadingGif.visibility = View.GONE;
+                                        InvalidCredentials.visibility = View.VISIBLE;
+                                        InvalidCredentials.text = it.localizedMessage;
+                                        FirebaseAnalytics.getInstance(this).logEvent("Error_Register", null)
+
+                                    }.addOnCanceledListener {
+                                        Toast.makeText(this, "Register canceled", Toast.LENGTH_LONG).show()
+
+                                    }
+
+                                }
+                                .addOnFailureListener { exception ->
+                                }
+                        }
+                        .addOnFailureListener { exception ->
+                        }
                 }
                 .addOnFailureListener { exception ->
             }
-
-            FirebaseFirestore.getInstance().collection("weapons")
-                .get()
-                .addOnSuccessListener { result ->
-                    for(doc in result.documents)
-                        weapons.add(Pair(doc["weaponName"].toString(),doc["imageUrl"].toString()))
-                }
-                .addOnFailureListener { exception ->
-                }
-
-            FirebaseFirestore.getInstance().collection("prestiges")
-                .get()
-                .addOnSuccessListener { result ->
-                    for(doc in result.documents)
-                        prestiges.add(Pair(doc.id,doc["imageUrl"].toString()))
-                }
-                .addOnFailureListener { exception ->
-                }
-
-
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnSuccessListener { authResult ->
-
-                    var classes : itemsClass
-                    classes = itemsClass()
-                    var items : ArrayList<item>
-                    items = ArrayList<item>()
-
-                    var newPrestige : Pair<String, String>
-                    newPrestige = prestiges.shuffled()[0]
-
-                    for(i in 0..9){
-                        var weapon = weapons.shuffled()[0]
-                        var weapon2 = weapons.shuffled()[0]
-                        items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
-                    }
-
-                    classes.class1 = items[0]
-                    classes.class2 = items[1]
-                    classes.class3 = items[2]
-                    classes.class4 = items[3]
-                    classes.class5 = items[4]
-                    classes.class6 = items[5]
-                    classes.class7 = items[6]
-                    classes.class8 = items[7]
-                    classes.class9 = items[8]
-                    classes.class10 = items[9]
-
-                    //Create user profile
-                    val userModel = UserModel(
-                        userId = authResult.user?.uid ?: "",
-                        userName = username,
-                        userEmail = email,
-
-                        iconURL = newPrestige.second,
-                        prestigeName = newPrestige.first,
-                        prestigeLevel = (1 + Random().nextInt(54)).toString(),
-                        kills = Random().nextInt(10000),
-                        deaths = Random().nextInt(10000),
-                        losses = Random().nextInt(10000),
-                        wins = Random().nextInt(10000),
-                        playTime = Random().nextInt(10).toString()+"d, "+Random().nextInt(23).toString()+"h, "+Random().nextInt(60).toString()+"m, "+Random().nextInt(60).toString()+"s",
-                        score= Random().nextInt(100000),
-                        classes = classes
-                    )
-
-                FirebaseAnalytics.getInstance(this).logEvent("User_Register", null)
-
-
-
-                    FirebaseFirestore.getInstance().collection(COLLECTION_USERS).document(authResult.user?.uid ?:"").set(userModel).addOnSuccessListener {
-                        finish()
-                    }
-                    .addOnFailureListener {
-                        FirebaseAnalytics.getInstance(this).logEvent("Error_UpdateUserToFirestore", null)
-                        Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
-                    }
-
-
-            }.addOnFailureListener {
-                Toast.makeText(this, "Error while register: " + it.localizedMessage, Toast.LENGTH_LONG).show()
-                loadingGif.visibility = View.GONE;
-                InvalidCredentials.visibility = View.VISIBLE;
-                InvalidCredentials.text = it.localizedMessage;
-                FirebaseAnalytics.getInstance(this).logEvent("Error_Register", null)
-
-            }.addOnCanceledListener {
-                Toast.makeText(this, "Register canceled", Toast.LENGTH_LONG).show()
-
-            }
-
-
         }
         //endregion
 
