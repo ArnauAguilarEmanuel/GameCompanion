@@ -1,5 +1,6 @@
 package com.marcsolis.gamecompanion.activity
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -88,6 +89,10 @@ class MainActivity : AppCompatActivity() {
         super.onResume();
 
         if(FirebaseAuth.getInstance().currentUser != null ) {
+
+            var mediaPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.bo2_main_theme)
+            mediaPlayer?.start() // no need to call prepare(); create()
+
             FirebaseFirestore.getInstance().collection(COLLECTION_USERS)
                 .document(FirebaseAuth.getInstance().currentUser?.uid ?: "").get()
                 .addOnSuccessListener {
