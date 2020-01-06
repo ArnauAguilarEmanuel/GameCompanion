@@ -176,86 +176,86 @@ class RegisterActivity : AppCompatActivity() {
                                                             //Assault
                                                             0 -> {
                                                                 var weapon = weapons[0]
-                                                                var weapon2 = weapons[1]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                var weapon2 = weapons[1]                                                //F1            S2              S1          F3          F2
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[3],accesories[5],accesories[5],accesories[5],accesories[0],"Class "+ i))
                                                             }
                                                             //Sniper
                                                             1 -> {
                                                                 var weapon = weapons[7]
                                                                 var weapon2 = weapons[11]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[7],accesories[5],accesories[1],accesories[5],accesories[5],"Class "+ i))
                                                             }
                                                             //Recon
                                                             2 -> {
                                                                 var weapon = weapons[3]
                                                                 var weapon2 = weapons[10]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[4],accesories[5],accesories[7],accesories[5],accesories[7],"Class "+ i))
                                                             }
                                                             //Medic
                                                             3 -> {
                                                                 var weapon = weapons[9]
                                                                 var weapon2 = weapons[10]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[2],accesories[5],accesories[0],accesories[3],accesories[4],"Class "+ i))
                                                             }
                                                             //Engineer
                                                             4 -> {
                                                                 var weapon = weapons[6]
                                                                 var weapon2 = weapons[8]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[0],accesories[5],accesories[5],accesories[5],accesories[5],"Class "+ i))
                                                             }
                                                             //Support
                                                             5 -> {
                                                                 var weapon = weapons[13]
                                                                 var weapon2 = weapons[8]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[3],accesories[5],accesories[4],accesories[4],accesories[0],"Class "+ i))
                                                             }
                                                             //Bomber
                                                             6 -> {
                                                                 var weapon = weapons[19]
                                                                 var weapon2 = weapons[5]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[4],accesories[1],accesories[3],accesories[5],accesories[0],"Class "+ i))
                                                             }
                                                             //Juggernout
                                                             7 -> {
                                                                 var weapon = weapons[13]
                                                                 var weapon2 = weapons[4]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[3],accesories[5],accesories[5],accesories[4],accesories[0],"Class "+ i))
                                                             }
                                                             //Riout gear
                                                             8 -> {
                                                                 var weapon = weapons[17]
                                                                 var weapon2 = weapons[5]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[5],accesories[5],accesories[5],accesories[5],accesories[5],"Class "+ i))
                                                             }
                                                             //Marine
                                                             9 -> {
                                                                 var weapon = weapons[15]
                                                                 var weapon2 = weapons[1]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[2],accesories[5],accesories[4],accesories[6],accesories[5],"Class "+ i))
                                                             }
                                                             //Ranger
                                                             10 -> {
-                                                                var weapon = weapons[13]
+                                                                var weapon = weapons[14]
                                                                 var weapon2 = weapons[10]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[4],accesories[5],accesories[0],accesories[1],accesories[5],"Class "+ i))
                                                             }
                                                             //Spetznas
                                                             11 -> {
                                                                 var weapon = weapons[20]
                                                                 var weapon2 = weapons[4]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[1],accesories[7],accesories[0],accesories[4],accesories[6],"Class "+ i))
                                                             }
                                                             //SAS
                                                             12 -> {
                                                                 var weapon = weapons[12]
                                                                 var weapon2 = weapons[11]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[7],accesories[5],accesories[7],accesories[6],accesories[5],"Class "+ i))
                                                             }
                                                             //DeltaForce
                                                             13 -> {
-                                                                var weapon = weapons[9]
+                                                                var weapon = weapons[16]
                                                                 var weapon2 = weapons[1]
-                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                                items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories[7],accesories[5],accesories[3],accesories[4],accesories[5],"Class "+ i))
                                                             }
 
                                                         }
