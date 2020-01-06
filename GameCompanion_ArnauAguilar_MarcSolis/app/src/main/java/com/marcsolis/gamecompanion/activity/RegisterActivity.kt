@@ -9,7 +9,6 @@ import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.marcsolis.gamecompanion.R
 import com.marcsolis.gamecompanion.model.UserModel
 import com.marcsolis.gamecompanion.model.item
 import com.marcsolis.gamecompanion.model.itemsClass
@@ -22,6 +21,12 @@ import com.bumptech.glide.Glide
 import android.widget.ImageView
 import android.app.AlertDialog
 import com.google.firebase.analytics.FirebaseAnalytics
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.R
+
+
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -29,7 +34,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState:Bundle?) {
         super.onCreate(savedInstanceState)
         val intent = getIntent()
-        setContentView(R.layout.activity_register)
+        setContentView(com.marcsolis.gamecompanion.R.layout.activity_register)
         this.getSupportActionBar()?.hide();
 
 
@@ -67,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if(username.trim().isEmpty()){
                 InvalidCredentials.visibility = View.VISIBLE;
-                InvalidCredentials.text = getString(R.string.error_register_invalid_username);
+                InvalidCredentials.text = getString(com.marcsolis.gamecompanion.R.string.error_register_invalid_username);
                 loadingGif.visibility = View.GONE
 
 
@@ -77,7 +82,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if(email.isBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 InvalidCredentials.visibility = View.VISIBLE;
-                InvalidCredentials.text = getString(R.string.error_register_invalid_email);
+                InvalidCredentials.text = getString(com.marcsolis.gamecompanion.R.string.error_register_invalid_email);
                 loadingGif.visibility = View.GONE
 
 
@@ -86,7 +91,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if(password.isBlank() || !isPasswordValid(password)){
                 InvalidCredentials.visibility = View.VISIBLE;
-                InvalidCredentials.text = getString(R.string.error_register_invalid_password)
+                InvalidCredentials.text = getString(com.marcsolis.gamecompanion.R.string.error_register_invalid_password)
                 loadingGif.visibility = View.GONE
 
                 return@setOnClickListener
@@ -153,68 +158,74 @@ class RegisterActivity : AppCompatActivity() {
                                                     }
                                                 })
                                             // Set the action buttons
-                                            .setPositiveButton("Ok",
-                                                DialogInterface.OnClickListener { dialog, id ->
-                                                    // User clicked OK, so save the selectedItems results somewhere
-                                                    // or return them to the component that opened the dialog
-                                                    if(selectedItems.count() > 10) Toast.makeText(this, "Too many classes selected", Toast.LENGTH_LONG).show()
-                                                    else {
-                                                        //Generate class
-                                                        for(i in 0..9){
-                                                            var weapon = weapons.shuffled()[0]
-                                                            var weapon2 = weapons.shuffled()[0]
-                                                            items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
-                                                        }
-
-                                                        classes.class1 = items[0]
-                                                        classes.class2 = items[1]
-                                                        classes.class3 = items[2]
-                                                        classes.class4 = items[3]
-                                                        classes.class5 = items[4]
-                                                        classes.class6 = items[5]
-                                                        classes.class7 = items[6]
-                                                        classes.class8 = items[7]
-                                                        classes.class9 = items[8]
-                                                        classes.class10 = items[9]
-
-                                                        //Create user profile
-                                                        val userModel = UserModel(
-                                                            userId = authResult.user?.uid ?: "",
-                                                            userName = username,
-                                                            userEmail = email,
-
-                                                            iconURL = newPrestige.second,
-                                                            prestigeName = newPrestige.first,
-                                                            prestigeLevel = (1 + Random().nextInt(54)).toString(),
-                                                            kills = Random().nextInt(10000),
-                                                            deaths = Random().nextInt(10000),
-                                                            losses = Random().nextInt(10000),
-                                                            wins = Random().nextInt(10000),
-                                                            playTime = Random().nextInt(10).toString()+"d, "+Random().nextInt(23).toString()+"h, "+Random().nextInt(60).toString()+"m, "+Random().nextInt(60).toString()+"s",
-                                                            score= Random().nextInt(100000),
-                                                            classes = classes
-                                                        )
-
-                                                        FirebaseAnalytics.getInstance(this).logEvent("User_Register", null)
-
-
-
-                                                        FirebaseFirestore.getInstance().collection(COLLECTION_USERS).document(authResult.user?.uid ?:"").set(userModel).addOnSuccessListener {
-                                                            finish()
-                                                        }
-                                                            .addOnFailureListener {
-                                                                FirebaseAnalytics.getInstance(this).logEvent("Error_UpdateUserToFirestore", null)
-                                                                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
-                                                            }
-
-
-
-                                                        dialog.dismiss()
-                                                    }
-
-                                                })
+                                            .setPositiveButton(android.R.string.ok, null)
 
                                         val dialog = builder.create()
+
+                                        dialog.setOnShowListener {
+                                            val button =
+                                                (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE)
+                                            button.setOnClickListener {
+
+                                                if(selectedItems.count() > 10) Toast.makeText(this, "Select only 10 classes", Toast.LENGTH_LONG).show()
+                                                else if(selectedItems.count() < 10) Toast.makeText(this, "Select " + (10 - selectedItems.count()).toString() + " more classes.", Toast.LENGTH_LONG).show()
+                                                else {
+                                                    //Generate class
+
+                                                    for(i in 0..9){
+                                                        var weapon = weapons.shuffled()[0]
+                                                        var weapon2 = weapons.shuffled()[0]
+                                                        items.add(item(weapon.first,weapon.second,weapon2.first,weapon2.second,accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],accesories.shuffled()[0],"Class "+ i))
+                                                    }
+
+                                                    classes.class1 = items[0]
+                                                    classes.class2 = items[1]
+                                                    classes.class3 = items[2]
+                                                    classes.class4 = items[3]
+                                                    classes.class5 = items[4]
+                                                    classes.class6 = items[5]
+                                                    classes.class7 = items[6]
+                                                    classes.class8 = items[7]
+                                                    classes.class9 = items[8]
+                                                    classes.class10 = items[9]
+
+                                                    //Create user profile
+                                                    val userModel = UserModel(
+                                                        userId = authResult.user?.uid ?: "",
+                                                        userName = username,
+                                                        userEmail = email,
+
+                                                        iconURL = newPrestige.second,
+                                                        prestigeName = newPrestige.first,
+                                                        prestigeLevel = (1 + Random().nextInt(54)).toString(),
+                                                        kills = Random().nextInt(10000),
+                                                        deaths = Random().nextInt(10000),
+                                                        losses = Random().nextInt(10000),
+                                                        wins = Random().nextInt(10000),
+                                                        playTime = Random().nextInt(10).toString()+"d, "+Random().nextInt(23).toString()+"h, "+Random().nextInt(60).toString()+"m, "+Random().nextInt(60).toString()+"s",
+                                                        score= Random().nextInt(100000),
+                                                        classes = classes
+                                                    )
+
+                                                    FirebaseAnalytics.getInstance(this).logEvent("User_Register", null)
+
+
+
+                                                    FirebaseFirestore.getInstance().collection(COLLECTION_USERS).document(authResult.user?.uid ?:"").set(userModel).addOnSuccessListener {
+                                                        finish()
+                                                    }
+                                                        .addOnFailureListener {
+                                                            FirebaseAnalytics.getInstance(this).logEvent("Error_UpdateUserToFirestore", null)
+                                                            Toast.makeText(this, it.localizedMessage, Toast.LENGTH_LONG).show()
+                                                        }
+
+
+
+                                                    dialog.dismiss()
+                                                }
+                                            }
+                                        }
+
                                         dialog.show();
 
 
@@ -253,7 +264,7 @@ class RegisterActivity : AppCompatActivity() {
 
             if(email.isBlank() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
                 InvalidCredentials.visibility = View.VISIBLE;
-                InvalidCredentials.text = getString(R.string.error_register_invalid_email);
+                InvalidCredentials.text = getString(com.marcsolis.gamecompanion.R.string.error_register_invalid_email);
                 loadingGif.visibility = View.GONE
                 return@setOnClickListener
             }
@@ -261,7 +272,7 @@ class RegisterActivity : AppCompatActivity() {
             if(password.isBlank() || !isPasswordValid(password)){
 
                 InvalidCredentials.visibility = View.VISIBLE;
-                InvalidCredentials.text = getString(R.string.error_register_invalid_password);
+                InvalidCredentials.text = getString(com.marcsolis.gamecompanion.R.string.error_register_invalid_password);
                 loadingGif.visibility = View.GONE
 
                 return@setOnClickListener
