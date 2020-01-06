@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         this.getSupportActionBar()?.hide();
 
-
+        var mediaPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.bo2_main_theme)
+        mediaPlayer?.start() // no need to call prepare(); create()
 
         bottomNavigationView.getMenu().getItem(1).setChecked(true);
 
@@ -90,8 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         if(FirebaseAuth.getInstance().currentUser != null ) {
 
-            var mediaPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.bo2_main_theme)
-            mediaPlayer?.start() // no need to call prepare(); create()
+
 
             FirebaseFirestore.getInstance().collection(COLLECTION_USERS)
                 .document(FirebaseAuth.getInstance().currentUser?.uid ?: "").get()
