@@ -43,6 +43,15 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
         holder.username.text = element.username
         holder.title.text = element.title
 
+        holder.channel.setOnClickListener{
+            val url = "https://www.twitch.tv/"+ element.username +"/videos"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+
+
+            holder.cont.startActivity(i);
+        }
+
         holder.button.setOnClickListener{
 
             val url = "https://www.twitch.tv/"+ element.username
@@ -68,6 +77,7 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
         val thumbnail = itemView.thumbnail
         val userImage = itemView.userImage
         val button = itemView.linkButton
+        val channel = itemView.chanelButton
         val cont = context
     }
 
