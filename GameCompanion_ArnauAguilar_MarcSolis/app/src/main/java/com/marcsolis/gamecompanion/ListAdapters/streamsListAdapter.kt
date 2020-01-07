@@ -1,5 +1,8 @@
 package com.marcsolis.gamecompanion.ListAdapters
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +26,7 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(com.marcsolis.gamecompanion.R.layout.stream_layout, parent, false)
-        return ViewHolder(itemView)
+        return ViewHolder(itemView, parent.context)
     }
 
     // Total List Items
@@ -38,8 +41,18 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
 
         // Update Views
         holder.username.text = element.username
-
         holder.title.text = element.title
+
+        holder.button.setOnClickListener{
+
+            val url = "https://www.twitch.tv/"+ element.username
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+
+
+            holder.cont.startActivity(i);
+        }
+
 
         Picasso.get().load(element.imageUrl).into(holder.thumbnail)
         //Picasso.get().load(element.userImageURL).into(holder.userImage)
@@ -48,12 +61,14 @@ class streamsListAdapter: RecyclerView.Adapter<streamsListAdapter.ViewHolder>() 
     }
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView) {
 
         val username = itemView.username
         val title= itemView.title
         val thumbnail = itemView.thumbnail
         val userImage = itemView.userImage
+        val button = itemView.linkButton
+        val cont = context
     }
 
 }
