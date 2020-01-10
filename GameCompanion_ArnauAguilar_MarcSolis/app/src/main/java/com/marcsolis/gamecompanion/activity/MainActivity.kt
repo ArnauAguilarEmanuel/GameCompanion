@@ -1,5 +1,6 @@
 package com.marcsolis.gamecompanion.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -18,6 +19,12 @@ import com.marcsolis.gamecompanion.model.UserModel
 import com.marcsolis.gamecompanion.util.COLLECTION_USERS
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,8 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         this.getSupportActionBar()?.hide();
 
-        var mediaPlayer: MediaPlayer? = MediaPlayer.create(this, R.raw.bo2_main_theme)
-        mediaPlayer?.start() // no need to call prepare(); create()
+
 
         bottomNavigationView.getMenu().getItem(1).setChecked(true);
 
@@ -88,10 +94,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    val mediaPlayer: MediaPlayer by lazy {MediaPlayer.create(this, R.raw.bo2_main_theme)}
     override fun onResume(){
         super.onResume();
 
-
+        //mediaPlayer.stop()
+        mediaPlayer.start() // no need to call prepare(); create()
 
         if(FirebaseAuth.getInstance().currentUser != null ) {
 
@@ -119,5 +127,9 @@ class MainActivity : AppCompatActivity() {
 
                 }
         }
+    }
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.pause() // no need to call prepare(); create()
     }
 }

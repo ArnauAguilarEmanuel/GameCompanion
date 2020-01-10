@@ -10,8 +10,6 @@ import android.content.Context.WINDOW_SERVICE
 import androidx.core.content.ContextCompat.getSystemService
 
 
-
-
 data class TWStream(
     var title: String?=null,
     @SerializedName("user_name")
