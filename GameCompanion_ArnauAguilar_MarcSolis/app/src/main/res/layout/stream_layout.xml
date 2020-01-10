@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="221dp">
+
+        <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/linkButton"
+                android:background="@android:color/transparent"/>
+        <ImageView
+                android:layout_width="match_parent"
+                android:scaleType="fitCenter"
+                android:layout_height="221dp"
+                android:id="@+id/thumbnail"/>
+
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                >
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="top"
+                        android:id="@+id/title"
+                        android:text="asdf"
+                        android:textColor="@color/colorIcons"
+                        android:background="@mipmap/dup"/>
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@mipmap/ddown"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal">
+
+        <ImageView
+                android:layout_margin="5dp"
+                android:id="@+id/userImage"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+        <ImageButton
+
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:id="@+id/chanelButton"
+                android:background="@android:color/transparent"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:id="@+id/username"
+            android:layout_toEndOf="@id/userImage"
+            android:text="asdfasdf"
+            android:textColor="@color/colorIcons"/>
+
+</RelativeLayout>
+
+            </FrameLayout>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Game Companion</string>
-    <string name="tab_resume">Resume</string>
+    <string name="tab_streams">Streams</string>
     <string name="tab_home">User</string>
     <string name="tab_classes">Classes</string>
     <string name="registerButton">Register Here</string>

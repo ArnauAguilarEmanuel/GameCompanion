@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:gravity="center"
+            android:background="@color/ColorDarkLight"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:layout_marginVertical="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="80dp"
+                android:scaleType="fitCenter"
+                android:layout_height="90dp"
+                android:id="@+id/gameImage"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:fontFamily="@font/blops"
+                android:id="@+id/gameName"
+                android:text="Call Of Duty \n \nBlack Ops II"
+                android:textColor="@color/colorIcons"/>
+
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerview"/>
+
+
+</LinearLayout>

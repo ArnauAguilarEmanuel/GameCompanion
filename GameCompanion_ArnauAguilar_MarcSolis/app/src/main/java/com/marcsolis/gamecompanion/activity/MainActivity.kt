@@ -1,5 +1,9 @@
 package com.marcsolis.gamecompanion.activity
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,10 +14,17 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.marcsolis.gamecompanion.fragment.ProfileFragment
 import com.marcsolis.gamecompanion.R
 import com.marcsolis.gamecompanion.fragment.ClassFragment
+import com.marcsolis.gamecompanion.fragment.StreamsFragment
 import com.marcsolis.gamecompanion.model.UserModel
 import com.marcsolis.gamecompanion.util.COLLECTION_USERS
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,10 +73,18 @@ class MainActivity : AppCompatActivity() {
                     FirebaseAnalytics.getInstance(this).logEvent("User_Tab_Click", null)
 
                 }
-                R.id.info ->{
+                R.id.streams ->{
+
+                    //Create fragment
+                    val streamsFragment = StreamsFragment()
+                    //Add fragment to Fragment Container
+                    val fragmentManager = supportFragmentManager
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.replace(fragmentContainer.id, streamsFragment)
+                    fragmentTransaction.commit()
+
                     FirebaseAnalytics.getInstance(this).logEvent("Info_Tab_Click", null)
                 }
-
             }
             true
         }
@@ -75,10 +94,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    val mediaPlayer: MediaPlayer by lazy {MediaPlayer.create(this, R.raw.bo2_main_theme)}
     override fun onResume(){
         super.onResume();
 
+        //mediaPlayer.stop()
+        mediaPlayer.start() // no need to call prepare(); create()
+
         if(FirebaseAuth.getInstance().currentUser != null ) {
+
+
+
             FirebaseFirestore.getInstance().collection(COLLECTION_USERS)
                 .document(FirebaseAuth.getInstance().currentUser?.uid ?: "").get()
                 .addOnSuccessListener {
@@ -101,5 +127,9 @@ class MainActivity : AppCompatActivity() {
 
                 }
         }
+    }
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer.pause() // no need to call prepare(); create()
     }
 }
